@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
+    <welcome-file-list>
+        <welcome-file>index.jsp</welcome-file>
+    </welcome-file-list>
+    <context-param>
+        <param-name>header</param-name>
+        <param-value>Group 5</param-value>
+    </context-param>
+    <context-param>   
+        <param-name>footer</param-name>
+        <param-value>This is a sample website created as part of our MP3 in ICS2609</param-value>
+    </context-param>
+    <context-param>   
+        <param-name>copyright</param-name>
+        <param-value>Copyright © AJ_Alvarez, JS_Estaya</param-value>
+    </context-param>
+    <servlet>
+        <servlet-name>CaptchaServlet</servlet-name>
+        <servlet-class>test.CaptchaServlet</servlet-class>
+        <init-param>
+            <param-name>captchaLength</param-name>
+            <param-value>10</param-value>
+        </init-param>
+    </servlet>
+    <servlet>
+
+        <servlet-name>LoginServlet</servlet-name>
+        <servlet-class>test.LoginServlet</servlet-class>
+        <init-param>
+            <param-name>Cipher</param-name>
+            <param-value>AES/ECB/PKCS5Padding</param-value>
+        </init-param>
+        <init-param>
+            <param-name>Key</param-name>
+            <param-value>AlvarezEstayaDuo</param-value>
+        </init-param>
+        <init-param>
+            <param-name>jdbcDriver</param-name>
+            <param-value>org.apache.derby.jdbc.ClientDriver</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbDriver</param-name>
+            <param-value>jdbc:derby</param-value>
+        </init-param>
+        <init-param>
+            <param-name>host</param-name>
+            <param-value>localhost</param-value>
+        </init-param>
+        <init-param>
+            <param-name>port</param-name>
+            <param-value>1527</param-value>
+        </init-param>
+        <init-param>
+            <param-name>dbName</param-name>
+            <param-value>UserDB</param-value>
+        </init-param>
+        <init-param>
+            <param-name>username</param-name>
+            <param-value>app</param-value>
+        </init-param>
+        <init-param>
+            <param-name>password</param-name>
+            <param-value>app</param-value>
+        </init-param>
+    </servlet>
+    <error-page>
+        <exception-type>NullValueException</exception-type>
+        <location>/noLoginCredentials.jsp</location>
+    </error-page>
+    <error-page>
+        <error-code>404</error-code>
+        <location>/error_4.jsp</location>
+    </error-page>
+
+    
+    <servlet-mapping>
+        <servlet-name>LoginServlet</servlet-name>
+        <url-pattern>/LoginServlet</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>CaptchaServlet</servlet-name>
+        <url-pattern>/CaptchaServlet</url-pattern>
+    </servlet-mapping>
+    <session-config>
+        <session-timeout>5</session-timeout>
+    </session-config>
+</web-app>
